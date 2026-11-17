@@ -142,13 +142,14 @@ struct LargeView: View {
     let now: Date
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        // Real macOS large widget content area is ~320x316 pt after margins; keep total height under that.
+        VStack(alignment: .leading, spacing: 9) {
             Header(s: s, now: now)
 
             HStack(spacing: 16) {
-                BatteryRing(soc: s.soc, charging: s.isCharging, lineWidth: 10,
-                            percentFont: .system(.largeTitle, design: .rounded).weight(.bold))
-                    .frame(width: 118, height: 118)
+                BatteryRing(soc: s.soc, charging: s.isCharging, lineWidth: 9,
+                            percentFont: .system(.title, design: .rounded).weight(.bold))
+                    .frame(width: 98, height: 98)
                 VStack(alignment: .leading, spacing: 8) {
                     ChargeLine(snapshot: s)
                     if s.batteryA != nil || s.batteryB != nil {
@@ -169,26 +170,18 @@ struct LargeView: View {
                 } else {
                     ForEach(s.ranges.prefix(4), id: \.self) { r in
                         RangeTile(range: r)
-                            .padding(10)
+                            .padding(.horizontal, 10).padding(.vertical, 7)
                             .background(.fill.quaternary, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                     }
                 }
             }
 
-            Divider()
-
-            Grid(alignment: .leading, horizontalSpacing: 12, verticalSpacing: 8) {
-                GridRow {
-                    DetailCell(title: "ODOMETER", value: s.odometerKm.map { "\(Int($0.rounded())) km" } ?? "—", symbol: "road.lanes")
-                    DetailCell(title: "IGNITION", value: s.ignitionOn.map { $0 ? "On" : "Off" } ?? "—", symbol: "key")
-                }
-                GridRow {
-                    DetailCell(title: "LAST PACKET",
-                               value: s.packetTime.map { $0.formatted(date: .omitted, time: .shortened) } ?? "—",
-                               symbol: "antenna.radiowaves.left.and.right")
-                    DetailCell(title: "SOURCE", value: s.source == "live" ? "Live feed" : "TVS cloud", symbol: "icloud")
-                }
+            HStack(spacing: 8) {
+                DetailCell(title: "ODOMETER", value: s.odometerKm.map { "\(Int($0.rounded())) km" } ?? "—", symbol: "road.lanes")
+                DetailCell(title: "IGNITION", value: s.ignitionOn.map { $0 ? "On" : "Off" } ?? "—", symbol: "key")
+                DetailCell(title: "SOURCE", value: s.source == "live" ? "Live" : "Cloud", symbol: "icloud")
             }
+            .padding(.top, 2)
 
             Spacer(minLength: 0)
 
@@ -205,8 +198,8 @@ struct DetailCell: View {
     let value: String
     let symbol: String
     var body: some View {
-        HStack(spacing: 8) {
-            Image(systemName: symbol).font(.caption).foregroundStyle(.secondary).frame(width: 16)
+        HStack(spacing: 6) {
+            Image(systemName: symbol).font(.caption).foregroundStyle(.secondary).frame(width: 14)
             VStack(alignment: .leading, spacing: 1) {
                 Text(title).font(.system(size: 9, weight: .semibold)).tracking(0.6).foregroundStyle(.secondary)
                 Text(value).font(.callout.weight(.medium)).monospacedDigit().lineLimit(1)

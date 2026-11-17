@@ -6,9 +6,9 @@ import SwiftUI
 @main
 struct RenderWidgets {
     @MainActor static func main() {
-        let out = CommandLine.arguments.dropFirst().first ?? "."
+        let out = CommandLine.arguments.dropFirst().first(where: { !$0.hasPrefix("--") }) ?? "."
         var snap = SnapshotStore.load() ?? .galleryPreview
-        let now = Date()
+        let now = CommandLine.arguments.contains("--at-packet-time") ? (snap.packetTime ?? Date()).addingTimeInterval(120) : Date()
         var variants: [(String, ScooterSnapshot, Date)] = [("current", snap, now)]
         // Same real values, shown as charging, to check the charging layout.
         snap.chargingStatus = 1; snap.timeToChargeMinutes = 52
@@ -18,7 +18,7 @@ struct RenderWidgets {
         let sizes: [(String, CGSize, (ScooterSnapshot, Date) -> AnyView)] = [
             ("small", CGSize(width: 170, height: 170), { AnyView(SmallView(s: $0, now: $1)) }),
             ("medium", CGSize(width: 364, height: 170), { AnyView(MediumView(s: $0, now: $1)) }),
-            ("large", CGSize(width: 364, height: 382), { AnyView(LargeView(s: $0, now: $1)) }),
+            ("large", CGSize(width: 352, height: 348), { AnyView(LargeView(s: $0, now: $1)) }),
         ]
         for scheme in [ColorScheme.light, .dark] {
             for (vname, s, date) in variants {
