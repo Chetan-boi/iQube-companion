@@ -1,0 +1,8 @@
+*.apk
+
+# Probe build output and captured payloads (may contain personal vehicle data)
+Probe/.build/
+probe-*.jsonl
+*.jsonl
+TVSConnect/build/
+.DS_Store

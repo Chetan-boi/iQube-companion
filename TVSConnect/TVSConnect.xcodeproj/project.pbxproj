@@ -1,0 +1,471 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0C554C54DFDD74062D9CA7B0 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADAD9DFF3C6342FB797682B /* Credentials.swift */; };
+		0E241FCE50FB6B09197617DB /* ScooterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03485403C0136250CDF7BF62 /* ScooterWidget.swift */; };
+		169CD858C3A5575F3ACE832C /* ScooterSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2C5877C42330C4BADBB4C8 /* ScooterSnapshot.swift */; };
+		28CD16EA26F68111B2102F83 /* ScooterViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9161E187B00BC55BE48298 /* ScooterViews.swift */; };
+		49919E599F40C8D7B3F3C761 /* TVSAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D29A306989579A4F1D058F /* TVSAPI.swift */; };
+		4A5595E6E0CCA7B3B60F1E9A /* ScooterSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2C5877C42330C4BADBB4C8 /* ScooterSnapshot.swift */; };
+		5918AB50F3571E3F62C66DBB /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B67F1230DA149589993D07A /* DataController.swift */; };
+		A01F3E939743B0F25FB1E1EE /* TVSConnectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAFE3CC6B587F6BD9C7BA98 /* TVSConnectApp.swift */; };
+		AAA975EE3199A0E82FB15F1B /* TVSConnectWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5A93BFF73216F345DD345A9B /* TVSConnectWidget.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EB3B7D6669CDF041A253DB43 /* ScooterViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9161E187B00BC55BE48298 /* ScooterViews.swift */; };
+		F8DE8F1EE68AC6563AEF1C37 /* LiveClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0300AB086E7F0FE42F298EC2 /* LiveClient.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1CFC096A85DD6904F4950C4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A042162ED41433DE61EDDA2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B7ADBF189D6168A39247CBDE;
+			remoteInfo = TVSConnectWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3090DB694DCB976D23CFFC0C /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				AAA975EE3199A0E82FB15F1B /* TVSConnectWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0300AB086E7F0FE42F298EC2 /* LiveClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveClient.swift; sourceTree = "<group>"; };
+		03485403C0136250CDF7BF62 /* ScooterWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScooterWidget.swift; sourceTree = "<group>"; };
+		1ADAD9DFF3C6342FB797682B /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
+		1EBAD90F77B1A409C99D275E /* TVSConnect.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TVSConnect.entitlements; sourceTree = "<group>"; };
+		2A9161E187B00BC55BE48298 /* ScooterViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScooterViews.swift; sourceTree = "<group>"; };
+		2B67F1230DA149589993D07A /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		36D29A306989579A4F1D058F /* TVSAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVSAPI.swift; sourceTree = "<group>"; };
+		5A93BFF73216F345DD345A9B /* TVSConnectWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TVSConnectWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DA9823E0F2B59502D826456 /* TVSConnect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVSConnect.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		74EDF17F1B27302B33C57EF0 /* TVSConnectWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TVSConnectWidget.entitlements; sourceTree = "<group>"; };
+		81FE8540776BBFDD6202CEE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A8DF505FB8BA5A8907F4635A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CF2C5877C42330C4BADBB4C8 /* ScooterSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScooterSnapshot.swift; sourceTree = "<group>"; };
+		CFAFE3CC6B587F6BD9C7BA98 /* TVSConnectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVSConnectApp.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		46AECA663D1120BC07BD8E88 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				CF2C5877C42330C4BADBB4C8 /* ScooterSnapshot.swift */,
+				2A9161E187B00BC55BE48298 /* ScooterViews.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		4ED9240AAEB62AA57B0830B4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6DA9823E0F2B59502D826456 /* TVSConnect.app */,
+				5A93BFF73216F345DD345A9B /* TVSConnectWidget.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		533EB2DBB5D48EF7D932C7C4 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				1ADAD9DFF3C6342FB797682B /* Credentials.swift */,
+				2B67F1230DA149589993D07A /* DataController.swift */,
+				A8DF505FB8BA5A8907F4635A /* Info.plist */,
+				0300AB086E7F0FE42F298EC2 /* LiveClient.swift */,
+				36D29A306989579A4F1D058F /* TVSAPI.swift */,
+				1EBAD90F77B1A409C99D275E /* TVSConnect.entitlements */,
+				CFAFE3CC6B587F6BD9C7BA98 /* TVSConnectApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		858753C4C78EB7489DBAEFAB /* WidgetExtension */ = {
+			isa = PBXGroup;
+			children = (
+				81FE8540776BBFDD6202CEE5 /* Info.plist */,
+				03485403C0136250CDF7BF62 /* ScooterWidget.swift */,
+				74EDF17F1B27302B33C57EF0 /* TVSConnectWidget.entitlements */,
+			);
+			path = WidgetExtension;
+			sourceTree = "<group>";
+		};
+		B1BC0A4351780D144E8A1CE6 = {
+			isa = PBXGroup;
+			children = (
+				533EB2DBB5D48EF7D932C7C4 /* App */,
+				46AECA663D1120BC07BD8E88 /* Shared */,
+				858753C4C78EB7489DBAEFAB /* WidgetExtension */,
+				4ED9240AAEB62AA57B0830B4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		18A8FC095927A554B3BDF106 /* TVSConnect */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74B841C5347A8CB4665A297C /* Build configuration list for PBXNativeTarget "TVSConnect" */;
+			buildPhases = (
+				0C2AAC60C3BF3582E9534F7E /* Sources */,
+				3090DB694DCB976D23CFFC0C /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FB6A0862DE26C8B4F2DBD1FF /* PBXTargetDependency */,
+			);
+			name = TVSConnect;
+			packageProductDependencies = (
+			);
+			productName = TVSConnect;
+			productReference = 6DA9823E0F2B59502D826456 /* TVSConnect.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B7ADBF189D6168A39247CBDE /* TVSConnectWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA4A34759A02242A54EE22A1 /* Build configuration list for PBXNativeTarget "TVSConnectWidget" */;
+			buildPhases = (
+				4FD294BCEC31650EFB0886BE /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TVSConnectWidget;
+			packageProductDependencies = (
+			);
+			productName = TVSConnectWidget;
+			productReference = 5A93BFF73216F345DD345A9B /* TVSConnectWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2A042162ED41433DE61EDDA2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					18A8FC095927A554B3BDF106 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Manual;
+					};
+					B7ADBF189D6168A39247CBDE = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = 3F3EA5B7B5E12E3F9402C4CE /* Build configuration list for PBXProject "TVSConnect" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = B1BC0A4351780D144E8A1CE6;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 4ED9240AAEB62AA57B0830B4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				18A8FC095927A554B3BDF106 /* TVSConnect */,
+				B7ADBF189D6168A39247CBDE /* TVSConnectWidget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0C2AAC60C3BF3582E9534F7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C554C54DFDD74062D9CA7B0 /* Credentials.swift in Sources */,
+				5918AB50F3571E3F62C66DBB /* DataController.swift in Sources */,
+				F8DE8F1EE68AC6563AEF1C37 /* LiveClient.swift in Sources */,
+				4A5595E6E0CCA7B3B60F1E9A /* ScooterSnapshot.swift in Sources */,
+				28CD16EA26F68111B2102F83 /* ScooterViews.swift in Sources */,
+				49919E599F40C8D7B3F3C761 /* TVSAPI.swift in Sources */,
+				A01F3E939743B0F25FB1E1EE /* TVSConnectApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FD294BCEC31650EFB0886BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				169CD858C3A5575F3ACE832C /* ScooterSnapshot.swift in Sources */,
+				EB3B7D6669CDF041A253DB43 /* ScooterViews.swift in Sources */,
+				0E241FCE50FB6B09197617DB /* ScooterWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FB6A0862DE26C8B4F2DBD1FF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B7ADBF189D6168A39247CBDE /* TVSConnectWidget */;
+			targetProxy = 1CFC096A85DD6904F4950C4A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		43D148CFEDCA8293962253A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/TVSConnect.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_APP_SANDBOX = NO;
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tvsconn.app;
+				PRODUCT_NAME = "TVS Connect";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		4E24E17527A089C239FB802C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/TVSConnect.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_APP_SANDBOX = NO;
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tvsconn.app;
+				PRODUCT_NAME = "TVS Connect";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		598AB0DD9CAB374CC95C15E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = WidgetExtension/TVSConnectWidget.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_APP_SANDBOX = YES;
+				INFOPLIST_FILE = WidgetExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tvsconn.app.widget;
+				PRODUCT_NAME = TVSConnectWidget;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		60780B94AE1EBA23D55CE35D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		BD188771486BEA2A655BC524 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = WidgetExtension/TVSConnectWidget.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_APP_SANDBOX = YES;
+				INFOPLIST_FILE = WidgetExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tvsconn.app.widget;
+				PRODUCT_NAME = TVSConnectWidget;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E521B33FCBF9D13A950E7937 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3F3EA5B7B5E12E3F9402C4CE /* Build configuration list for PBXProject "TVSConnect" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60780B94AE1EBA23D55CE35D /* Debug */,
+				E521B33FCBF9D13A950E7937 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		74B841C5347A8CB4665A297C /* Build configuration list for PBXNativeTarget "TVSConnect" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E24E17527A089C239FB802C /* Debug */,
+				43D148CFEDCA8293962253A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FA4A34759A02242A54EE22A1 /* Build configuration list for PBXNativeTarget "TVSConnectWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD188771486BEA2A655BC524 /* Debug */,
+				598AB0DD9CAB374CC95C15E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2A042162ED41433DE61EDDA2 /* Project object */;
+}

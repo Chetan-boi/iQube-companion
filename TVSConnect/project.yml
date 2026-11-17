@@ -1,0 +1,74 @@
+name: TVSConnect
+options:
+  bundleIdPrefix: com.tvsconn
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    # No Apple Developer identity on this Mac: sign ad-hoc ("Sign to Run Locally").
+    CODE_SIGN_IDENTITY: "-"
+    CODE_SIGN_STYLE: Manual
+    DEVELOPMENT_TEAM: ""
+    ENABLE_HARDENED_RUNTIME: NO
+    DEAD_CODE_STRIPPING: YES
+
+targets:
+  TVSConnect:
+    type: application
+    platform: macOS
+    sources:
+      - App
+      - Shared
+    dependencies:
+      - target: TVSConnectWidget
+        embed: true
+        codeSign: true
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: TVS Connect
+        LSUIElement: true
+        LSApplicationCategoryType: public.app-category.utilities
+        NSHumanReadableCopyright: Personal project
+        CFBundleURLTypes:
+          - CFBundleURLName: com.tvsconn.app
+            CFBundleURLSchemes: [tvsconnect]
+    entitlements:
+      path: App/TVSConnect.entitlements
+      properties: {}
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.tvsconn.app
+        PRODUCT_NAME: TVS Connect
+        ENABLE_APP_SANDBOX: NO
+
+  TVSConnectWidget:
+    type: app-extension
+    platform: macOS
+    sources:
+      - WidgetExtension
+      - Shared
+    info:
+      path: WidgetExtension/Info.plist
+      properties:
+        CFBundleDisplayName: TVS Scooter
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: WidgetExtension/TVSConnectWidget.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        # Read-only access to the folder the menu-bar app writes snapshot.json into.
+        # (Used instead of an App Group, which needs a paid Developer team to sign.)
+        com.apple.security.temporary-exception.files.home-relative-path.read-only:
+          - /Library/Application Support/TVSConnectWidget/
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.tvsconn.app.widget
+        PRODUCT_NAME: TVSConnectWidget
+        ENABLE_APP_SANDBOX: YES
+        SKIP_INSTALL: YES
