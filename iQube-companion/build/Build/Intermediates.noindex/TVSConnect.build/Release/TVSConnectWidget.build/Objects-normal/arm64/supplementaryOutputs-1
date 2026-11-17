@@ -1,0 +1,12 @@
+{
+  "/Users/chetan/Desktop/TVS_CONN/TVSConnect/Shared/ScooterSnapshot.swift" : {
+    "abi-baseline-json" : "/Users/chetan/Desktop/TVS_CONN/TVSConnect/build/Build/Intermediates.noindex/TVSConnect.build/Release/TVSConnectWidget.build/Objects-normal/arm64/TVSConnectWidget.abi.json",
+    "const-values" : "/Users/chetan/Desktop/TVS_CONN/TVSConnect/build/Build/Intermediates.noindex/TVSConnect.build/Release/TVSConnectWidget.build/Objects-normal/arm64/TVSConnectWidget-primary.swiftconstvalues",
+    "dependencies" : "/Users/chetan/Desktop/TVS_CONN/TVSConnect/build/Build/Intermediates.noindex/TVSConnect.build/Release/TVSConnectWidget.build/Objects-normal/arm64/TVSConnectWidget-primary.d",
+    "diagnostics" : "/Users/chetan/Desktop/TVS_CONN/TVSConnect/build/Build/Intermediates.noindex/TVSConnect.build/Release/TVSConnectWidget.build/Objects-normal/arm64/TVSConnectWidget-primary.dia",
+    "objc-header" : "/Users/chetan/Desktop/TVS_CONN/TVSConnect/build/Build/Intermediates.noindex/TVSConnect.build/Release/TVSConnectWidget.build/Objects-normal/arm64/TVSConnectWidget-Swift.h",
+    "swiftdoc" : "/Users/chetan/Desktop/TVS_CONN/TVSConnect/build/Build/Intermediates.noindex/TVSConnect.build/Release/TVSConnectWidget.build/Objects-normal/arm64/TVSConnectWidget.swiftdoc",
+    "swiftmodule" : "/Users/chetan/Desktop/TVS_CONN/TVSConnect/build/Build/Intermediates.noindex/TVSConnect.build/Release/TVSConnectWidget.build/Objects-normal/arm64/TVSConnectWidget.swiftmodule",
+    "swiftsourceinfo" : "/Users/chetan/Desktop/TVS_CONN/TVSConnect/build/Build/Intermediates.noindex/TVSConnect.build/Release/TVSConnectWidget.build/Objects-normal/arm64/TVSConnectWidget.swiftsourceinfo"
+  }
+}

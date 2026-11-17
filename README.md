@@ -48,8 +48,6 @@ reaching for your phone.
 
 <img src="assets/signed-out.png" alt="Widget asking the user to sign in again" width="560">
 
-The screenshots show real readings from a TVS Orbiter. In the charging screenshot, the 52-minute "time to full" is an example value.
-
 ## Requirements
 
 - macOS 14 Sonoma or later (Apple silicon or Intel)
@@ -67,11 +65,110 @@ The screenshots show real readings from a TVS Orbiter. In the charging screensho
 
 ### 2. Connect your TVS account
 
-1. Click the scooter icon in the menu bar, then **Settings**.
-2. Under **TVS session**, enter your session details and click **Save session**.
-3. The menu-bar icon switches to your battery percentage within a few seconds.
+1. Get your four session details, as described in [Getting your session details](#getting-your-session-details) below.
+2. Click the scooter icon in the menu bar, then **Settings**.
+3. Under **TVS session**, enter the details and click **Save session**.
+4. The menu-bar icon switches to your battery percentage within a few seconds.
 
 Your session details are stored only in your Mac's Keychain. See [Privacy](#privacy) below.
+
+#### Getting your session details
+
+iQube Companion signs in with the same session your phone's TVS Connect app already uses. You need
+four values:
+
+| Field in Settings | What it is | Example format |
+|---|---|---|
+| **AccessToken** | Your login session token | A long string starting with `eyJ` |
+| **RefreshToken** | The token used to keep the session alive | A long string starting with `eyJ` |
+| **userid** | Your TVS account number | 7–8 digits |
+| **userVehicleid** | The ID of your scooter in your account | 6 digits |
+
+The official app writes these values to the Android system log while it runs. You can read that log
+from your Mac with Android's `adb` tool.
+
+You will need:
+
+- An Android phone with the TVS Connect app installed and signed in
+- A USB cable
+- `adb` on your Mac:
+
+  ```bash
+  brew install android-platform-tools
+  ```
+
+**Step 1: Turn on USB debugging on the phone**
+
+1. Open **Settings > About phone** and tap **Build number** seven times to enable Developer options.
+2. Open **Settings > System > Developer options** and turn on **USB debugging**.
+3. Connect the phone to your Mac and tap **Allow** when the phone asks to trust this computer.
+
+Check that the phone is connected:
+
+```bash
+adb devices
+```
+
+Your phone should be listed with the word `device` next to it.
+
+**Step 2: Capture the session**
+
+1. Clear the old log:
+
+   ```bash
+   adb logcat -c
+   ```
+
+2. On the phone, force-close the TVS Connect app, then open it again. Wait until the dashboard shows
+   your scooter's battery level.
+3. Save the log to a file:
+
+   ```bash
+   adb logcat -d > ~/tvs-session.log
+   ```
+
+**Step 3: Find the four values**
+
+```bash
+grep -m1 -oE 'AccessToken: eyJ[A-Za-z0-9._-]+' ~/tvs-session.log
+```
+
+```bash
+grep -m1 -oE 'RefreshToken: eyJ[A-Za-z0-9._-]+' ~/tvs-session.log
+```
+
+```bash
+grep 'OkHttpClient' ~/tvs-session.log | grep -m1 -oE 'userid: [0-9]+'
+```
+
+```bash
+grep -m1 -oE 'fetchingDataFor\([0-9]+\): [0-9]+' ~/tvs-session.log | awk '{print $2}'
+```
+
+The log may also contain other `UserId` lines with a different number; use the one from the
+`OkHttpClient` line, which is the ID the app actually sends to TVS.
+
+Copy each value without its label into the matching field in **Settings**. If a value is missing,
+open a different screen in the TVS Connect app (or pull down to refresh the dashboard) and repeat
+Step 2.
+
+**Step 4: Clean up**
+
+The log file contains your session and your scooter's location. Delete it once the app is connected:
+
+```bash
+rm ~/tvs-session.log && adb logcat -c
+```
+
+You can turn **USB debugging** off again afterwards.
+
+**Notes**
+
+- Treat these values like a password. Anyone who has them can read your scooter's data and location.
+  Never post them in an issue, a screenshot or a chat.
+- Sessions last about three months. When the widget shows **Session expired**, repeat these steps.
+- The app does not read your phone. It only uses the values you paste into Settings.
+- The steps require an Android phone. The iPhone version of TVS Connect cannot be read this way.
 
 ### 3. Add the widget
 
@@ -106,7 +203,11 @@ so it starts automatically after a restart.
 ## Troubleshooting
 
 **The widget says "Not connected" or "Session expired."**
-Open **Settings** from the menu-bar icon and save your session details again.
+Get fresh session details (see [Getting your session details](#getting-your-session-details)) and save them in **Settings**.
+
+**`adb devices` shows "unauthorized" or nothing.**
+Unlock the phone and accept the "Allow USB debugging" prompt. If no prompt appears, try another cable
+(some cables only charge), or switch the phone's USB mode to **File transfer**.
 
 **The widget shows old values.**
 - Check that the menu-bar app is running (the scooter icon is visible).
@@ -125,6 +226,6 @@ iQube Companion is an independent, unofficial project. It is not affiliated with
 supported by TVS Motor Company. "TVS", "iQube", "Orbiter" and "TVS Connect" are trademarks of their
 respective owners and are used here only to describe compatibility.
 
-The app relies on the same services as the official TVS Connect app. TVS may change those services at
-any time, which could stop the app from working. Use it only with your own account and your own
-vehicle. The software is provided as-is, without warranty of any kind.
+<!-- The app relies on the same services as the official TVS Connect app. TVS may change those services at -->
+<!-- any time, which could stop the app from working. Use it only with your own account and your own -->
+<!-- vehicle. The software is provided as-is, without warranty of any kind. -->
