@@ -3,7 +3,9 @@ import ServiceManagement
 import SwiftUI
 import WidgetKit
 
+#if !SNAPSHOT_TOOL
 @main
+#endif
 enum Entry {
     static func main() {
         let args = CommandLine.arguments
