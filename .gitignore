@@ -6,3 +6,7 @@ probe-*.jsonl
 *.jsonl
 TVSConnect/build/
 .DS_Store
+
+.build
+untitled folder
+iQube-companion/build/

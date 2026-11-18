@@ -58,7 +58,7 @@ struct ScooterWidgetView: View {
                                     Color(nsColor: .controlBackgroundColor)],
                            startPoint: .top, endPoint: .bottom)
         }
-        .widgetURL(URL(string: "tvsconnect://open"))
+        .widgetURL(URL(string: "iqubecompanion://open"))
     }
 }
 
@@ -216,7 +216,7 @@ struct ScooterWidget: Widget {
         StaticConfiguration(kind: "TVSScooterWidget", provider: ScooterProvider()) { entry in
             ScooterWidgetView(entry: entry)
         }
-        .configurationDisplayName("TVS Scooter")
+        .configurationDisplayName("iQube Companion")
         .description("Battery, charging and estimated range from your TVS scooter.")
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }

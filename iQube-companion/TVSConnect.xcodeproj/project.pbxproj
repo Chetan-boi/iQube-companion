@@ -13,9 +13,11 @@
 		28CD16EA26F68111B2102F83 /* ScooterViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9161E187B00BC55BE48298 /* ScooterViews.swift */; };
 		49919E599F40C8D7B3F3C761 /* TVSAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D29A306989579A4F1D058F /* TVSAPI.swift */; };
 		4A5595E6E0CCA7B3B60F1E9A /* ScooterSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2C5877C42330C4BADBB4C8 /* ScooterSnapshot.swift */; };
+		4BD1B740BC05CFD3D254734F /* Logo_Dark.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5FDC0B12E621B09389B76879 /* Logo_Dark.icns */; };
 		5918AB50F3571E3F62C66DBB /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B67F1230DA149589993D07A /* DataController.swift */; };
 		A01F3E939743B0F25FB1E1EE /* TVSConnectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAFE3CC6B587F6BD9C7BA98 /* TVSConnectApp.swift */; };
 		AAA975EE3199A0E82FB15F1B /* TVSConnectWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5A93BFF73216F345DD345A9B /* TVSConnectWidget.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C0F42CBE6C385740073EA301 /* Logo.icns in Resources */ = {isa = PBXBuildFile; fileRef = D3BA4CB868570EB2A7E00ACC /* Logo.icns */; };
 		EB3B7D6669CDF041A253DB43 /* ScooterViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9161E187B00BC55BE48298 /* ScooterViews.swift */; };
 		F8DE8F1EE68AC6563AEF1C37 /* LiveClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0300AB086E7F0FE42F298EC2 /* LiveClient.swift */; };
 /* End PBXBuildFile section */
@@ -53,12 +55,14 @@
 		2B67F1230DA149589993D07A /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		36D29A306989579A4F1D058F /* TVSAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVSAPI.swift; sourceTree = "<group>"; };
 		5A93BFF73216F345DD345A9B /* TVSConnectWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TVSConnectWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FDC0B12E621B09389B76879 /* Logo_Dark.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Logo_Dark.icns; sourceTree = "<group>"; };
 		6DA9823E0F2B59502D826456 /* TVSConnect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVSConnect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74EDF17F1B27302B33C57EF0 /* TVSConnectWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TVSConnectWidget.entitlements; sourceTree = "<group>"; };
 		81FE8540776BBFDD6202CEE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A8DF505FB8BA5A8907F4635A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CF2C5877C42330C4BADBB4C8 /* ScooterSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScooterSnapshot.swift; sourceTree = "<group>"; };
 		CFAFE3CC6B587F6BD9C7BA98 /* TVSConnectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVSConnectApp.swift; sourceTree = "<group>"; };
+		D3BA4CB868570EB2A7E00ACC /* Logo.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Logo.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -90,8 +94,18 @@
 				36D29A306989579A4F1D058F /* TVSAPI.swift */,
 				1EBAD90F77B1A409C99D275E /* TVSConnect.entitlements */,
 				CFAFE3CC6B587F6BD9C7BA98 /* TVSConnectApp.swift */,
+				7C4C6D78DDCA9DCF8BE9AD4C /* AppIcon */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		7C4C6D78DDCA9DCF8BE9AD4C /* AppIcon */ = {
+			isa = PBXGroup;
+			children = (
+				5FDC0B12E621B09389B76879 /* Logo_Dark.icns */,
+				D3BA4CB868570EB2A7E00ACC /* Logo.icns */,
+			);
+			path = AppIcon;
 			sourceTree = "<group>";
 		};
 		858753C4C78EB7489DBAEFAB /* WidgetExtension */ = {
@@ -122,6 +136,7 @@
 			buildConfigurationList = 74B841C5347A8CB4665A297C /* Build configuration list for PBXNativeTarget "TVSConnect" */;
 			buildPhases = (
 				0C2AAC60C3BF3582E9534F7E /* Sources */,
+				8F6440CB02C48B74264FD2E6 /* Resources */,
 				3090DB694DCB976D23CFFC0C /* Embed Foundation Extensions */,
 			);
 			buildRules = (
@@ -192,6 +207,18 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		8F6440CB02C48B74264FD2E6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0F42CBE6C385740073EA301 /* Logo.icns in Resources */,
+				4BD1B740BC05CFD3D254734F /* Logo_Dark.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0C2AAC60C3BF3582E9534F7E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -240,8 +267,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tvsconn.app;
-				PRODUCT_NAME = "TVS Connect";
+				PRODUCT_BUNDLE_IDENTIFIER = com.iqubecompanion.app;
+				PRODUCT_NAME = "iQube Companion";
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -258,8 +285,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tvsconn.app;
-				PRODUCT_NAME = "TVS Connect";
+				PRODUCT_BUNDLE_IDENTIFIER = com.iqubecompanion.app;
+				PRODUCT_NAME = "iQube Companion";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -276,7 +303,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tvsconn.app.widget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iqubecompanion.app.widget;
 				PRODUCT_NAME = TVSConnectWidget;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -365,7 +392,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tvsconn.app.widget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iqubecompanion.app.widget;
 				PRODUCT_NAME = TVSConnectWidget;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;

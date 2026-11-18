@@ -1,6 +1,6 @@
 name: TVSConnect
 options:
-  bundleIdPrefix: com.tvsconn
+  bundleIdPrefix: com.iqubecompanion
   deploymentTarget:
     macOS: "14.0"
   createIntermediateGroups: true
@@ -30,20 +30,21 @@ targets:
     info:
       path: App/Info.plist
       properties:
-        CFBundleDisplayName: TVS Connect
+        CFBundleDisplayName: iQube Companion
+        CFBundleIconFile: Logo
         LSUIElement: true
         LSApplicationCategoryType: public.app-category.utilities
         NSHumanReadableCopyright: Personal project
         CFBundleURLTypes:
-          - CFBundleURLName: com.tvsconn.app
-            CFBundleURLSchemes: [tvsconnect]
+          - CFBundleURLName: com.iqubecompanion.app
+            CFBundleURLSchemes: [iqubecompanion]
     entitlements:
       path: App/TVSConnect.entitlements
       properties: {}
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.tvsconn.app
-        PRODUCT_NAME: TVS Connect
+        PRODUCT_BUNDLE_IDENTIFIER: com.iqubecompanion.app
+        PRODUCT_NAME: iQube Companion
         ENABLE_APP_SANDBOX: NO
 
   TVSConnectWidget:
@@ -55,7 +56,7 @@ targets:
     info:
       path: WidgetExtension/Info.plist
       properties:
-        CFBundleDisplayName: TVS Scooter
+        CFBundleDisplayName: iQube Companion
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     entitlements:
@@ -68,7 +69,7 @@ targets:
           - /Library/Application Support/TVSConnectWidget/
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.tvsconn.app.widget
+        PRODUCT_BUNDLE_IDENTIFIER: com.iqubecompanion.app.widget
         PRODUCT_NAME: TVSConnectWidget
         ENABLE_APP_SANDBOX: YES
         SKIP_INSTALL: YES

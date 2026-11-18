@@ -24,7 +24,7 @@ the same information as the official TVS Connect phone app, so you can check you
 reaching for your phone.
 
 - **Battery:** overall state of charge, plus each battery pack (A and B) separately.
-- **Estimated range:** for each riding mode your scooter reports, such as Eco and Power.
+- **Estimated range:** for each riding mode your scooter reports, such as Eco and City on the Orbiter, or Eco and Power on the iQube.
 - **Charging:** whether the scooter is charging, the estimated time to full, and a reminder to unplug when it's full.
 - **Status:** Parked, Ignition on, Charging, or Asleep, plus odometer and the time of the last update.
 - **Live updates:** while the scooter is online it sends a new reading about every 5 seconds. When it is parked and asleep, the app falls back to the last reading stored by TVS.
@@ -119,8 +119,9 @@ Your phone should be listed with the word `device` next to it.
    adb logcat -c
    ```
 
-2. On the phone, force-close the TVS Connect app, then open it again. Wait until the dashboard shows
-   your scooter's battery level.
+2. On the phone, force-close the TVS Connect app, then open it again. Keep the phone unlocked and
+   wait until the dashboard shows your scooter's battery level. The values are only written once the
+   dashboard has loaded; if the screen locks first, nothing is captured.
 3. Save the log to a file:
 
    ```bash
@@ -138,15 +139,15 @@ grep -m1 -oE 'RefreshToken: eyJ[A-Za-z0-9._-]+' ~/tvs-session.log
 ```
 
 ```bash
-grep 'OkHttpClient' ~/tvs-session.log | grep -m1 -oE 'userid: [0-9]+'
+grep -oE 'evUserId: [0-9]+' ~/tvs-session.log | tail -1
 ```
 
 ```bash
-grep -m1 -oE 'fetchingDataFor\([0-9]+\): [0-9]+' ~/tvs-session.log | awk '{print $2}'
+grep -oE 'fetchingDataFor[^:]*: [0-9]+' ~/tvs-session.log | tail -1 | awk '{print $NF}'
 ```
 
-The log may also contain other `UserId` lines with a different number; use the one from the
-`OkHttpClient` line, which is the ID the app actually sends to TVS.
+The log also contains other `UserId` and `ICEUserId` lines with different numbers. Use the
+`evUserId` value: it is the ID of your electric-vehicle account, which the app sends to TVS.
 
 Copy each value without its label into the matching field in **Settings**. If a value is missing,
 open a different screen in the TVS Connect app (or pull down to refresh the dashboard) and repeat
@@ -173,7 +174,7 @@ You can turn **USB debugging** off again afterwards.
 ### 3. Add the widget
 
 1. Right-click an empty part of your desktop and choose **Edit Widgets**.
-2. Search for **TVS Scooter**.
+2. Search for **iQube Companion**.
 3. Drag the Small, Medium or Large size onto your desktop or into Notification Center, then click **Done**.
 
 ### 4. Keep it updating

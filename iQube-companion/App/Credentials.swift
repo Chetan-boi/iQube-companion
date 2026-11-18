@@ -26,40 +26,41 @@ struct Credentials: Equatable {
 }
 
 enum CredentialStore {
-    static let service = "com.tvsconn.app"
-    private enum Account: String, CaseIterable { case accessToken, refreshToken, userId, userVehicleId }
+    static let service = "com.iqubecompanion.app"
+    /// All four values live in ONE Keychain item (JSON), so macOS asks at most once — and never again
+    /// after "Always Allow", because the app is signed with a stable identity (see scripts/build.sh).
+    private static let account = "session"
 
+    private struct Stored: Codable {
+        let accessToken: String
+        let refreshToken: String
+        let userId: String
+        let userVehicleId: String
+    }
+
+    /// Read once at launch; DataController keeps the result in memory.
     static func load() -> Credentials? {
-        guard let a = get(.accessToken), let r = get(.refreshToken),
-              let u = get(.userId), let v = get(.userVehicleId) else { return nil }
-        let c = Credentials(accessToken: a, refreshToken: r, userId: u, userVehicleId: v)
+        var q = base
+        q[kSecReturnData as String] = true
+        q[kSecMatchLimit as String] = kSecMatchLimitOne
+        var out: AnyObject?
+        guard SecItemCopyMatching(q as CFDictionary, &out) == errSecSuccess,
+              let d = out as? Data,
+              let s = try? JSONDecoder().decode(Stored.self, from: d) else { return nil }
+        let c = Credentials(accessToken: s.accessToken, refreshToken: s.refreshToken,
+                            userId: s.userId, userVehicleId: s.userVehicleId)
         return c.isComplete ? c : nil
     }
 
     static func save(_ c: Credentials) throws {
-        try set(c.accessToken, .accessToken)
-        try set(c.refreshToken, .refreshToken)
-        try set(c.userId, .userId)
-        try set(c.userVehicleId, .userVehicleId)
-    }
-
-    static func clear() {
-        for a in Account.allCases { SecItemDelete(base(a) as CFDictionary) }
-    }
-
-    private static func base(_ a: Account) -> [String: Any] {
-        [kSecClass as String: kSecClassGenericPassword,
-         kSecAttrService as String: service,
-         kSecAttrAccount as String: a.rawValue]
-    }
-
-    private static func set(_ value: String, _ a: Account) throws {
-        let v = value.trimmingCharacters(in: .whitespacesAndNewlines)
-        let q = base(a)
-        let update = SecItemUpdate(q as CFDictionary, [kSecValueData as String: Data(v.utf8)] as CFDictionary)
-        if update == errSecSuccess { return }
-        var add = q
-        add[kSecValueData as String] = Data(v.utf8)
+        func t(_ s: String) -> String { s.trimmingCharacters(in: .whitespacesAndNewlines) }
+        let data = try JSONEncoder().encode(Stored(accessToken: t(c.accessToken), refreshToken: t(c.refreshToken),
+                                                   userId: t(c.userId), userVehicleId: t(c.userVehicleId)))
+        // Delete + add (rather than update) so the item is owned by the current app and its ACL is fresh.
+        SecItemDelete(base as CFDictionary)
+        var add = base
+        add[kSecValueData as String] = data
+        add[kSecAttrLabel as String] = "iQube Companion session"
         add[kSecAttrAccessible as String] = kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
         let status = SecItemAdd(add as CFDictionary, nil)
         guard status == errSecSuccess else {
@@ -68,12 +69,13 @@ enum CredentialStore {
         }
     }
 
-    private static func get(_ a: Account) -> String? {
-        var q = base(a)
-        q[kSecReturnData as String] = true
-        q[kSecMatchLimit as String] = kSecMatchLimitOne
-        var out: AnyObject?
-        guard SecItemCopyMatching(q as CFDictionary, &out) == errSecSuccess, let d = out as? Data else { return nil }
-        return String(data: d, encoding: .utf8)
+    static func clear() {
+        SecItemDelete(base as CFDictionary)
+    }
+
+    private static var base: [String: Any] {
+        [kSecClass as String: kSecClassGenericPassword,
+         kSecAttrService as String: service,
+         kSecAttrAccount as String: account]
     }
 }

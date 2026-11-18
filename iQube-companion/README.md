@@ -1,15 +1,15 @@
-# TVS Connect — macOS menu-bar app + WidgetKit widget
+# iQube Companion — macOS menu-bar app + WidgetKit widget
 
 Shows your TVS scooter's battery (overall + packs A/B), charging state, time to full, and estimated
 range per riding mode (Eco / Power for the Orbiter), in light or dark mode.
 
 ```
 TVS cloud ──REST getlatestdevicedata──┐
-P360 live feed (GraphQL WebSocket) ───┤──► TVS Connect.app (menu bar) ──► ~/Library/Application Support/
+P360 live feed (GraphQL WebSocket) ───┤──► iQube Companion.app (menu bar) ──► ~/Library/Application Support/
                                       │      Keychain: session tokens         TVSConnectWidget/snapshot.json
                                       │                                         │
                                       └──────────────────────────────────────── ▼
-                                                             TVS Scooter widget (sandboxed, read-only)
+                                                             iQube Companion widget (sandboxed, read-only)
 ```
 
 ## How data flows
@@ -30,35 +30,35 @@ P360 live feed (GraphQL WebSocket) ───┤──► TVS Connect.app (menu b
 
 ```bash
 brew install xcodegen          # once
-cd TVSConnect
-xcodegen generate
-xcodebuild -project TVSConnect.xcodeproj -scheme TVSConnect -configuration Release -derivedDataPath build build
-pkill -x "TVS Connect"; rm -rf "/Applications/TVS Connect.app"
-ditto "build/Build/Products/Release/TVS Connect.app" "/Applications/TVS Connect.app"
-open "/Applications/TVS Connect.app"
+scripts/setup-signing.sh       # once: creates a local self-signed signing certificate
+scripts/build.sh               # build, sign, install to /Applications and relaunch
 ```
 
-Add the widget: right-click the desktop → **Edit Widgets…** → search "TVS Scooter" → choose Small, Medium or Large.
+`build.sh` signs every build with the same local certificate, so macOS sees the same app each time.
+After you click **Always Allow** once, the Keychain does not ask again, even after rebuilding.
+An unsigned or ad-hoc build would ask for your password on every launch after each rebuild.
+
+Add the widget: right-click the desktop → **Edit Widgets…** → search "iQube Companion" → choose Small, Medium or Large.
 
 ## Session (tokens)
 
 Open the scooter icon in the menu bar → **Settings…** → paste `AccessToken`, `RefreshToken`, `userid`
-and `userVehicleid`. They are stored only in the login Keychain (service `com.tvsconn.app`).
+and `userVehicleid`. They are stored only in the login Keychain (service `com.iqubecompanion.app`).
 The access token lasts about 3 months. When it expires, the widget shows "Session expired".
 
 You can also import them from a script:
 
 ```bash
-printf '%s\n%s\n%s\n%s\n' "$ACCESS" "$REFRESH" "$USERID" "$VEHICLEID" | "/Applications/TVS Connect.app/Contents/MacOS/TVS Connect" --import-credentials
+printf '%s\n%s\n%s\n%s\n' "$ACCESS" "$REFRESH" "$USERID" "$VEHICLEID" | "/Applications/iQube Companion.app/Contents/MacOS/iQube Companion" --import-credentials
 ```
 
-Because the app is signed ad-hoc, each rebuild changes its code identity. After a reinstall, macOS may
-ask once to let "TVS Connect" use its Keychain items. Click **Always Allow**.
+If macOS ever asks to let "iQube Companion" use its Keychain item, click **Always Allow**. Builds made
+with `scripts/build.sh` keep the same identity, so it will not ask again.
 
 ## Helpers
 
 | Command | Purpose |
 |---|---|
-| `TVS Connect --fetch-once` | Runs the REST call, waits up to 25 s for a live packet, writes the snapshot and reloads widgets, then exits |
-| `TVS Connect --enable-login-item` | Registers the app to launch at login (also a toggle in Settings) |
+| `iQube Companion --fetch-once` | Runs the REST call, waits up to 25 s for a live packet, writes the snapshot and reloads widgets, then exits |
+| `iQube Companion --enable-login-item` | Registers the app to launch at login (also a toggle in Settings) |
 | `swiftc … Tools/RenderWidgets.swift` | Renders every widget size to PNGs (light and dark) from the current snapshot, without adding the widget |

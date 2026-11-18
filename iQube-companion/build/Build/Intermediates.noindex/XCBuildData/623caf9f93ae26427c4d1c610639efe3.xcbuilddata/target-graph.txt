@@ -1,4 +1,0 @@
-Target dependency graph (2 targets)
-Target 'TVSConnect' in project 'TVSConnect'
-➜ Explicit dependency on target 'TVSConnectWidget' in project 'TVSConnect'
-Target 'TVSConnectWidget' in project 'TVSConnect' (no dependencies)

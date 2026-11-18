@@ -35,7 +35,7 @@ struct TVSConnectApp: App {
         }
         .menuBarExtraStyle(.window)
 
-        Window("TVS Connect", id: "main") {
+        Window("iQube Companion", id: "main") {
             MainWindow()
                 .environmentObject(data)
                 .frame(minWidth: 460, minHeight: 520)
@@ -83,7 +83,7 @@ struct MenuContent: View {
                     NSApp.activate(ignoringOtherApps: true)
                 } label: { Label("Settings…", systemImage: "gearshape") }
                 Button { NSApp.terminate(nil) } label: { Image(systemName: "power") }
-                    .help("Quit TVS Connect (widget stops updating)")
+                    .help("Quit iQube Companion (widget stops updating)")
             }
             .buttonStyle(.borderless)
         }
@@ -224,7 +224,7 @@ struct SettingsView: View {
 // MARK: - Command-line helpers (setup & testing)
 
 enum CLI {
-    /// `TVS Connect --import-credentials` reads 4 lines from stdin:
+    /// `iQube Companion --import-credentials` reads 4 lines from stdin:
     /// AccessToken, RefreshToken, userid, userVehicleid — and stores them in the Keychain.
     static func importCredentials() {
         var lines: [String] = []
@@ -242,7 +242,7 @@ enum CLI {
         }
     }
 
-    /// `TVS Connect --fetch-once`: REST + first live message → snapshot.json → reload widgets. Headless.
+    /// `iQube Companion --fetch-once`: REST + first live message → snapshot.json → reload widgets. Headless.
     static func fetchOnce() {
         guard let creds = CredentialStore.load() else { print("No credentials."); exit(1) }
         let name = UserDefaults.standard.string(forKey: "vehicleName") ?? "TVS Orbiter"

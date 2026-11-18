@@ -207,6 +207,6 @@ struct EmptyStateView: View {
         }
     }
     private var detail: String {
-        snapshot?.message ?? "Open TVS Connect from the menu bar and add your session."
+        snapshot?.message ?? "Open iQube Companion from the menu bar and add your session."
     }
 }

@@ -23,8 +23,9 @@ struct ScooterSnapshot: Codable, Equatable {
     var ranges: [RangeValue]
     /// Raw `charging_status`. The Android app only ever tests `== 1` (charging).
     var chargingStatus: Int?
-    /// Raw `time_to_charge_completion`. Treated as minutes (app passes it to setChargeRemainingTimeMinutes).
-    /// Observed as 5002 while *not* charging, so only shown while charging.
+    /// Minutes to full, from `time_to_charge_completion`, which the server sends in SECONDS
+    /// (verified 18 Nov 2026: 8183 while the TVS app showed "2 hours 16 mins to charge fully").
+    /// Stale (e.g. 5002 s) while *not* charging, so only shown while charging.
     var timeToChargeMinutes: Double?
     var ignitionOn: Bool?
     var odometerKm: Double?
@@ -56,7 +57,7 @@ struct ScooterSnapshot: Codable, Equatable {
         return a == b
     }
 
-    static func empty(_ state: FetchState, vehicleName: String = "TVS Scooter", message: String? = nil) -> ScooterSnapshot {
+    static func empty(_ state: FetchState, vehicleName: String = "iQube Companion", message: String? = nil) -> ScooterSnapshot {
         ScooterSnapshot(vehicleName: vehicleName, soc: nil, batteryA: nil, batteryB: nil, ranges: [],
                         chargingStatus: nil, timeToChargeMinutes: nil, ignitionOn: nil, odometerKm: nil,
                         packetTime: nil, fetchedAt: Date(), source: "", state: state, message: message)
@@ -65,7 +66,7 @@ struct ScooterSnapshot: Codable, Equatable {
     /// Illustrative values for the widget gallery preview only — never written to disk.
     static let galleryPreview = ScooterSnapshot(
         vehicleName: "TVS Orbiter", soc: 82, batteryA: 82.4, batteryB: 81.6,
-        ranges: [RangeValue(mode: "Eco", km: 95), RangeValue(mode: "Power", km: 79)],
+        ranges: [RangeValue(mode: "Eco", km: 95), RangeValue(mode: "City", km: 79)],
         chargingStatus: 1, timeToChargeMinutes: 48, ignitionOn: false, odometerKm: 1234,
         packetTime: Date(), fetchedAt: Date(), source: "live", state: .ok, message: nil)
 }
@@ -126,9 +127,11 @@ enum TelemetryParser {
         if let evRaw = r["evrange"] as? [String: Any] {
             let ev = normalized(evRaw)
             // Orbiter (U546) and iQube use dte_*; other models use Xtl/Xtr/Xnc (DashboardDetailsViewModel).
+            // The Orbiter app labels dte_power "CITY" (verified on the phone); iQube calls it Power.
+            let powerLabel = vehicleName.lowercased().contains("orbiter") ? "City" : "Power"
             let order: [(String, String)] = [
                 ("dteeco", "Eco"), ("dtestreet", "Street"), ("dtecity", "City"),
-                ("dtepower", "Power"), ("dtesport", "Sport"),
+                ("dtepower", powerLabel), ("dtesport", "Sport"),
                 ("xtl", "Eco"), ("xtr", "Street"), ("xnc", "Power"),
             ]
             var seen = Set<String>()
@@ -160,7 +163,7 @@ enum TelemetryParser {
             batteryB: num(r["batbsoc"]),
             ranges: ranges,
             chargingStatus: num(r["chargingstatus"]).map { Int($0) },
-            timeToChargeMinutes: num(r["timetochargecompletion"]),
+            timeToChargeMinutes: num(r["timetochargecompletion"]).map { $0 / 60 },
             ignitionOn: ignition.map { $0 == 1 },
             odometerKm: num(r["odometercan"]) ?? num(r["odometer"]),
             packetTime: packet,
